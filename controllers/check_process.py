@@ -1,5 +1,4 @@
 import psutil
-import autopep8
 
 
 def check(process_name):
@@ -19,4 +18,3 @@ def check(process_name):
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess) as e:
             print(e)
     return False
-
