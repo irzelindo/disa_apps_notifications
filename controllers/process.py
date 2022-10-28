@@ -1,7 +1,8 @@
 import psutil
 import pandas as pd
+import time
+import pygetwindow as gw
 from configs import db_setup
-from datetime import datetime
 
 
 def database():
@@ -35,7 +36,7 @@ def check(process_name):
     return False
 
 
-def start(process_name):
+def start(process_name, process_path, df):
     """
     Start the process if it's not running.
     Parameters: 
@@ -44,12 +45,33 @@ def start(process_name):
         String: "Process started" or "Process already running"
     """
     if check(process_name):
-        return "Process already running"
+        return
     else:
         # Start the process
-        psutil.Popen(process_name)
-        return f"Process {process_name} started..."
+        psutil.Popen(process_path)
+        # Minimize the process window
+        # print(process_name)
+        # Wait for the window to open
+        time.sleep(3)
+        # Get the window object
+        window = gw.getActiveWindow()
+        # Minimize the window
+        window.minimize()
+        return update_process(process_name, process_path, df)
 
+def update_process(process_name, process_path, df):
+    """
+    Update current status to the dataframe.
+    Parameters: 
+        String: process_name
+        String: process_path
+    Returns: 
+        Dataframe: df with updated status
+    """
+    df.loc[df['Process'] == process_name, 'Current_State'] = 'Running' if check(
+        process_name) else 'Stopped'
+    df.loc[df['Process'] == process_name, 'Updated_At'] = pd.Timestamp.now()
+    return df
 
 def add_process(process_name, process_path, df):
     """
@@ -63,8 +85,10 @@ def add_process(process_name, process_path, df):
     data = {
         'Process': process_name,
         'Path': process_path,
-        'Status': 'Running' if check(process_name) else 'Stopped',
-        'Date': pd.Timestamp.now()
+        'Previous_State': 'Running' if check(process_name) else 'Stopped',
+        'Date': pd.Timestamp.now(),
+        'Current_State': None,
+        'Updated_At': None,
     }
     
     df = df.append(data, ignore_index=True)
