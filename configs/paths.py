@@ -3,7 +3,7 @@ from configparser import ConfigParser
 
 cfg = ConfigParser()
 
-BASE_PATH = os.path.join(os.path.dirname(os.path.abspath('')), 'openldr-epts')
+BASE_PATH = os.path.join(os.path.dirname(os.path.abspath('')), 'disa_apps_notifications')
 
 CONFIG_PATH = os.path.join(BASE_PATH, 'configs\config.ini')
 

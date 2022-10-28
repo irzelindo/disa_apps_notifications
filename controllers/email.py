@@ -2,7 +2,7 @@ from redmail import EmailSender
 from pathlib import Path
 
 
-def send_email(host, port, username, password, subject, receivers, cc_emails, text, html, files):
+def send_email(host, port, username, password, subject, receivers, cc_emails, text, html, files, df):
     email = EmailSender(
         host=host,
         port=port,
@@ -16,10 +16,13 @@ def send_email(host, port, username, password, subject, receivers, cc_emails, te
         receivers=map(lambda x: x.strip(), receivers),
         cc=map(lambda x: x.strip(), cc_emails),
         text=text,
-        html=html,
-        attachments={
-            file['name']: Path(file['path']) for file in files
-        }
+        html='{{table}}',
+        body_tables={
+            'table': df
+        },
+        # attachments={
+        #     file['name']: Path(file['path']) for file in files
+        # }
     )
 
     print("Email sent successfully")
