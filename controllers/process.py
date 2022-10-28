@@ -64,12 +64,11 @@ def start(process_name, process_path, df):
             pass
             
 
-def update_process(process_name, process_path, df):
+def update_process(process_name, df):
     """
     Update current status to the dataframe.
     Parameters: 
         String: process_name
-        String: process_path
     Returns: 
         Dataframe: df with updated status
     """
@@ -78,19 +77,17 @@ def update_process(process_name, process_path, df):
     df.loc[df['Process'] == process_name, 'Updated_At'] = pd.Timestamp.now()
     return df
 
-def add_process(process_name, process_path, df):
+def add_process(process_name, df):
     """
     Add current status to the dataframe.
     Parameters: 
         String: process_name
-        String: process_path
     Returns: 
         String: "Process added"
     """
     # print(check(process_name))
     data = {
         'Process': process_name,
-        'Path': process_path,
         'Previous_State': 'Running' if check(process_name) else 'Stopped',
         'Date': pd.Timestamp.now(),
         'Current_State': None,
