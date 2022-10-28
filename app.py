@@ -26,7 +26,6 @@ for process in processes:
             start(process['name'], process['path'], df)
         except Exception as e:
             print(e)
-            pass
 
 
 send_email(

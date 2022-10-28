@@ -48,20 +48,16 @@ def start(process_name, process_path, df):
         return
     else:
         # Start the process
-        try:
-            psutil.Popen(process_path)
-            # Minimize the process window
-            # print(process_name)
-            # Wait for the window to open
-            time.sleep(3)
-            # Get the window object
-            window = gw.getActiveWindow()
-            # Minimize the window
-            window.minimize()
-            return update_process(process_name, process_path, df)
-        except psutil.Error as e:
-            print(e)
-            pass
+        psutil.Popen(process_path)
+        # Minimize the process window
+        # print(process_name)
+        # Wait for the window to open
+        time.sleep(3)
+        # Get the window object
+        window = gw.getActiveWindow()
+        # Minimize the window
+        window.minimize()
+        return update_process(process_name, df)
             
 
 def update_process(process_name, df):
