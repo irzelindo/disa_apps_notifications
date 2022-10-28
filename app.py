@@ -22,7 +22,11 @@ for process in processes:
     else:
         # print(f"Process {process['name']} from {process['path']} is not running")
         df = add_process(process['name'], process['path'], df)
-        start(process['name'], process['path'], df)
+        try:
+            start(process['name'], process['path'], df)
+        except Exception as e:
+            print(e)
+            pass
 
 
 send_email(

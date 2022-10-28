@@ -48,16 +48,21 @@ def start(process_name, process_path, df):
         return
     else:
         # Start the process
-        psutil.Popen(process_path)
-        # Minimize the process window
-        # print(process_name)
-        # Wait for the window to open
-        time.sleep(3)
-        # Get the window object
-        window = gw.getActiveWindow()
-        # Minimize the window
-        window.minimize()
-        return update_process(process_name, process_path, df)
+        try:
+            psutil.Popen(process_path)
+            # Minimize the process window
+            # print(process_name)
+            # Wait for the window to open
+            time.sleep(3)
+            # Get the window object
+            window = gw.getActiveWindow()
+            # Minimize the window
+            window.minimize()
+            return update_process(process_name, process_path, df)
+        except psutil.Error as e:
+            print(e)
+            pass
+            
 
 def update_process(process_name, process_path, df):
     """
@@ -82,6 +87,7 @@ def add_process(process_name, process_path, df):
     Returns: 
         String: "Process added"
     """
+    # print(check(process_name))
     data = {
         'Process': process_name,
         'Path': process_path,
