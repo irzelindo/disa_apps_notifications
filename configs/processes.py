@@ -1,18 +1,18 @@
 processes = [
     {
-        'name':'disacomms',
-        'path':'C:\\Disalab\\disacomms.exe',
+        'name':'DisaComms',
+        'path':'C:\\Disalab\\DisaComms.exe',
     },
     {
-        'name':'disabatch',
-        'path': 'C:\\Disalab\\disabatch.exe',
+        'name':'DisaBatch',
+        'path': 'C:\\Disalab\\DisaBatch.exe',
     },
     {
-        'name':'auto ftp',
-        'path': 'C:\\Program Files (x86)\\Auto FTP Manager\\AutoFTP.exe',
+        'name':'Auto FTP',
+        'path': 'C:\\Program Files (x86)\\Deskshare\\Auto FTP Manager\\Auto FTP Manager.exe',
     },
     {
         'name': 'TeamViewer',
-        'path': 'C:\Program Files\TeamViewer\TeamViewer.exe',
+        'path': 'C:\\Program Files (x86)\\TeamViewer\\TeamViewer.exe',
     }
 ]
