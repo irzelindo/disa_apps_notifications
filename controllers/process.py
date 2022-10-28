@@ -63,7 +63,7 @@ def add_process(process_name, process_path, df):
     data = {
         'Process': process_name,
         'Path': process_path,
-        'Status': check(process_name),
+        'Status': 'Running' if check(process_name) else 'Stopped',
         'Date': pd.Timestamp.now()
     }
     
