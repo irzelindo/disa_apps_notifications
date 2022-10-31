@@ -26,7 +26,7 @@ for process in processes:
         try:
             df = start(process['name'], process['path'], df)
         except Exception as e:
-            print(e)
+            # print(e)
             df = update_process(process['name'], df)
 print(df.head(10))
 # send_email(

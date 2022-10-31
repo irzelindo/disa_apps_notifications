@@ -13,6 +13,6 @@ processes = [
     },
     {
         'name': 'TeamViewer',
-        'path': 'C:\\Program Files (x86)\\TeamViewer\\TeamViewer.exe',
+        'path': 'C:\\Program Files\\TeamViewer\\TeamViewer.exe',
     }
 ]

@@ -106,5 +106,9 @@ def add_process(process_name, df):
         'Disa_Version': None
     }
     
-    df = df.append(data, ignore_index=True)
+    new_row = pd.DataFrame(data, index=[0])
+    
+    df = pd.concat([df, new_row], ignore_index=True)
+    
+    # df = df.append(data, ignore_index=True)
     return df
