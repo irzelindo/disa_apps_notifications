@@ -3,7 +3,24 @@ import pandas as pd
 import time
 import pygetwindow as gw
 from configs import db_setup
+from urllib import request
 
+def internet_connectivity(host):
+    """
+    Check if there is internet connectivity.
+    Parameters: 
+        host: str
+            The host to check the connectivity to.
+    Returns:
+        bool
+            True if there is internet connectivity, False otherwise.
+    """
+    try:
+        request.urlopen(host)
+        return True
+    except:
+        return False
+    
 
 def database():
     """
@@ -44,20 +61,17 @@ def start(process_name, process_path, df):
     Returns: 
         String: "Process started" or "Process already running"
     """
-    if check(process_name):
-        return
-    else:
-        # Start the process
-        psutil.Popen(process_path)
-        # Minimize the process window
-        # print(process_name)
-        # Wait for the window to open
-        time.sleep(3)
-        # Get the window object
-        window = gw.getActiveWindow()
-        # Minimize the window
-        window.minimize()
-        return update_process(process_name, df)
+    # Start the process
+    psutil.Popen(process_path)
+    # Minimize the process window
+    # print(process_name)
+    # Wait for the window to open
+    time.sleep(3)
+    # Get the window object
+    window = gw.getActiveWindow()
+    # Minimize the window
+    window.minimize()
+    return update_process(process_name, df)
             
 
 def update_process(process_name, df):
@@ -88,6 +102,8 @@ def add_process(process_name, df):
         'Date': pd.Timestamp.now(),
         'Current_State': None,
         'Updated_At': None,
+        'Internet_Connectivity': 'Connected' if internet_connectivity('https://www.google.com') else 'Disconnected',
+        'Disa_Version': None
     }
     
     df = df.append(data, ignore_index=True)
