@@ -17,16 +17,13 @@ CC_EMAILS = EMAILS_CC_ADDR
 
 for process in processes:
     if check(process['name']):
-        # print(f"Process {process['name']} from {process['path']} is running")
         df = add_process(process['name'], df)
         df = update_process(process['name'], df)
     else:
-        # print(f"Process {process['name']} from {process['path']} is not running")
         df = add_process(process['name'], df)
         try:
             df = start(process['name'], process['path'], df)
         except Exception as e:
-            # print(e)
             df = update_process(process['name'], df)
 print(df.head(10))
 # send_email(

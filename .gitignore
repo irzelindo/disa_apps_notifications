@@ -7,10 +7,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-.\configs\processes.py
-\configs\processes.py
-configs\processes.py
-./configs/processes.py
 .Python
 build/
 develop-eggs/
