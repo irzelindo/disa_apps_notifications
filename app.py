@@ -4,6 +4,7 @@ from controllers.email import *
 from configs.processes import processes
 from configs.paths import *
 from configs.addresses import *
+from configs import db_setup
 
 
 pd.set_option('display.max_columns', None)
@@ -26,6 +27,9 @@ for process in processes:
         except Exception as e:
             df = update_process(process['name'], df)
 print(df.head(10))
+
+conn = db_setup.setup().connect()
+print(conn)
 # send_email(
 #     OUTLOOK_HOST,
 #     PORT,
