@@ -4,6 +4,7 @@ import time
 import pygetwindow as gw
 from configs import db_setup
 from urllib import request
+from configs.paths import *
 
 def internet_connectivity(host):
     """
@@ -84,7 +85,7 @@ def update_process(process_name, df):
     """
     df.loc[df['Process'] == process_name, 'Current_State'] = 'Running' if check(
         process_name) else 'Stopped'
-    df.loc[df['Process'] == process_name, 'Updated_At'] = pd.Timestamp.now()
+    df.loc[df['Process'] == process_name, 'Current_Date'] = pd.Timestamp.now()
     return df
 
 def add_process(process_name, df):
@@ -97,6 +98,8 @@ def add_process(process_name, df):
     """
     # print(check(process_name))
     data = {
+        'Lab_Code': LAB_PREFIX,
+        'Lab_Name': LAB_NAME,
         'Process': process_name,
         'Previous_State': 'Running' if check(process_name) else 'Stopped',
         'Previous_Date': pd.Timestamp.now(),
@@ -112,3 +115,18 @@ def add_process(process_name, df):
     
     # df = df.append(data, ignore_index=True)
     return df
+
+def insert_data(df):
+    """
+    Insert data to the database.
+    Parameters: 
+        Dataframe: df
+    Returns: 
+        None
+    """
+    with database().connect() as connection:
+        df.to_sql('State', connection, if_exists='append', index=False)
+
+        
+
+
