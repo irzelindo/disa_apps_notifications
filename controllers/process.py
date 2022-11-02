@@ -99,9 +99,9 @@ def add_process(process_name, df):
     data = {
         'Process': process_name,
         'Previous_State': 'Running' if check(process_name) else 'Stopped',
-        'Date': pd.Timestamp.now(),
+        'Previous_Date': pd.Timestamp.now(),
         'Current_State': None,
-        'Updated_At': None,
+        'Current_Date': None,
         'Internet_Connectivity': 'Connected' if internet_connectivity('https://www.google.com') else 'Disconnected',
         'Disa_Version': None
     }
