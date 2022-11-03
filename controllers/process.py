@@ -1,10 +1,13 @@
-import psutil
-import pandas as pd
 import time
-import pygetwindow as gw
-from configs import db_setup
 from urllib import request
+
+import pandas as pd
+import psutil
+import pygetwindow as gw
+
+from configs import db_setup
 from configs.paths import *
+
 
 def internet_connectivity(host):
     """
@@ -21,7 +24,7 @@ def internet_connectivity(host):
         return True
     except:
         return False
-    
+
 
 def database():
     """
@@ -68,9 +71,10 @@ def start(process_name, process_path, df):
     except Exception as e:
         df.loc[df['Process'] == process_name,
                'Previous_State'] = 'Process not found'
-        df.loc[df['Process'] == process_name, 
+        df.loc[df['Process'] == process_name,
                'Current_State'] = 'Process not found'
-        df.loc[df['Process'] == process_name, 'Current_Date'] = pd.Timestamp.now()
+        df.loc[df['Process'] == process_name,
+               'Current_Date'] = pd.Timestamp.now()
         return df
         # print(e)
     # Minimize the process window
@@ -82,7 +86,7 @@ def start(process_name, process_path, df):
     # Minimize the window
     window.minimize()
     return update_process(process_name, df)
-            
+
 
 def update_process(process_name, df):
     """
@@ -96,6 +100,7 @@ def update_process(process_name, df):
         process_name) else 'Stopped'
     df.loc[df['Process'] == process_name, 'Current_Date'] = pd.Timestamp.now()
     return df
+
 
 def add_process(process_name, df):
     """
@@ -117,13 +122,14 @@ def add_process(process_name, df):
         'Internet_Connectivity': 'Connected' if internet_connectivity('https://www.google.com') else 'Disconnected',
         'Disa_Version': None
     }
-    
+
     new_row = pd.DataFrame(data, index=[0])
-    
+
     df = pd.concat([df, new_row], ignore_index=True)
-    
+
     # df = df.append(data, ignore_index=True)
     return df
+
 
 def insert_data(df):
     """
@@ -135,7 +141,3 @@ def insert_data(df):
     """
     with database().connect() as connection:
         df.to_sql('State', connection, if_exists='append', index=False)
-
-        
-
-

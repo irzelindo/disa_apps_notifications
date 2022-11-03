@@ -1,10 +1,10 @@
 import pandas as pd
-from controllers.process import *
-from controllers.email import *
-from configs.processes import processes
-from configs.paths import *
-from configs.addresses import *
 
+from configs.addresses import *
+from configs.paths import *
+from configs.processes import processes
+from controllers.email import *
+from controllers.process import *
 
 pd.set_option('display.max_columns', None)
 
