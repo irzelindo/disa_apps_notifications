@@ -63,7 +63,16 @@ def start(process_name, process_path, df):
         String: "Process started" or "Process already running"
     """
     # Start the process
-    psutil.Popen(process_path)
+    try:
+        psutil.Popen(process_path)
+    except Exception as e:
+        df.loc[df['Process'] == process_name,
+               'Previous_State'] = 'Process not found'
+        df.loc[df['Process'] == process_name, 
+               'Current_State'] = 'Process not found'
+        df.loc[df['Process'] == process_name, 'Current_Date'] = pd.Timestamp.now()
+        return df
+        # print(e)
     # Minimize the process window
     # print(process_name)
     # Wait for the window to open
