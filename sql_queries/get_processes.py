@@ -1,15 +1,21 @@
 query = '''
-SELECT [Lab_Code] 
-	  ,[Lab_Name]
+SELECT [Lab_Code]
+      ,[Lab_Name]
       ,[Process]
       ,[Previous_State]
-      ,CAST([Previous_Date] AS VARCHAR)
+      ,[Previous_Date]
       ,[Current_State]
-      ,CAST([Current_Date] AS VARCHAR)
+      ,[Current_Date]
       ,[Internet_Connectivity]
-  FROM [DisaLabsLogs].[dbo].[State]
-  WHERE CAST([Current_Date] AS DATE) = CAST(GETDATE()-1 AS DATE)
-ORDER BY [Current_Date] DESC;
+      ,[Disa_Version]
+  FROM [LabLogs].[dbo].[State]
+  WHERE 
+	CAST([Current_Date] AS DATE) = CAST(GETDATE()-1 AS DATE)
+	AND (	
+			[Previous_State] = 'Stopped' 
+			OR [Current_State] = 'Stopped'
+			OR [Internet_Connectivity] = 'Disconnected'
+	);
 '''
 
 query_date_params = f'''
@@ -38,4 +44,11 @@ SELECT [Lab_Code]
   FROM [DisaLabsLogs].[dbo].[State]
   WHERE [Process] = {{}}
 ORDER BY [Current_Date] DESC;
+'''
+
+total_labs = '''
+SELECT COUNT(DISTINCT [Lab_Code]) AS Total_Checked_Labs
+	  FROM [LabLogs].[dbo].[State]
+  WHERE 
+	CAST([Current_Date] AS DATE) = CAST(GETDATE()-1 AS DATE)
 '''
