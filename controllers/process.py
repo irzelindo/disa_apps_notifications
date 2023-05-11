@@ -1,10 +1,6 @@
-import psutil
 import pandas as pd
-import time
-import pygetwindow as gw
 from configs import db_setup
 from sql_queries import get_processes
-from urllib import request
 from configs.paths import *
 
 def database():

@@ -14,6 +14,6 @@ EMAILS_ADDR_CLEAR = []
 
 EMAILS_ADDR = [
     'irzelindo.salvador@moz.aphl.org',
-    'Claudio.Nkumbula@moz.aphl.org',
-    'vagner.ermelindo@moz.aphl.org',
+    # 'Claudio.Nkumbula@moz.aphl.org',
+    # 'vagner.ermelindo@moz.aphl.org',
 ]
