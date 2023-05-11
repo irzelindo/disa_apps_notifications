@@ -1,10 +1,24 @@
 import psutil
 import pandas as pd
 import time
+import socket
 import pygetwindow as gw
 from configs import db_setup
 from urllib import request
 from configs.paths import *
+
+def socket_server():
+    """
+    Create a socket server.
+    Parameters: 
+        None
+    Returns: 
+        Object: socket server object
+    """
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST_NAME, int(HOST_PORT)))
+    server.listen(5)
+    return server
 
 def internet_connectivity(host):
     """

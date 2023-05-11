@@ -15,6 +15,21 @@ TEXT = f'Hello,\n\nThis is an automated email to inform you about the running pr
 EMAILS = EMAILS_ADDR
 CC_EMAILS = EMAILS_CC_ADDR
 
+# server = socket_server()
+
+# conn, address = server.accept()
+
+# print(f'Connection from {address} has been established!')
+
+# while True:
+#     msg = conn.recv(1024).decode('utf-8')
+#     if msg == 'exit':
+#         break
+#     print(msg)
+#     conn.send(bytes('I can listen to you!', 'utf-8'))
+    
+# conn.close()
+
 for process in processes:
     if check(process['name']):
         df = add_process(process['name'], df)

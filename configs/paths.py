@@ -19,6 +19,9 @@ TLS = cfg.get('default', 'tls')
 ## Lab Configurations
 LAB_NAME = cfg.get('default', 'lab_name')
 LAB_PREFIX = cfg.get('default', 'lab_prefix')
+HOST_NAME = cfg.get('default', 'socket_host')
+HOST_PORT = cfg.get('default', 'socket_port')
+
 
 # GMAIL Email configurations
 GMAIL_HOST = cfg.get('smtp_gmail', 'server')
