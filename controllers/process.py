@@ -27,6 +27,8 @@ def get_process(**kwargs):
         Dataframe: df
     """
     query = get_processes.query
+
+    total_labs = get_processes.total_labs
     
     for k, v in kwargs.items():
         if k == 'process_name':
@@ -45,5 +47,6 @@ def get_process(**kwargs):
                                                     }})
     with database().connect() as connection:
         df = pd.read_sql(query, connection)
-    return df
+        total = pd.read_sql(total_labs, connection)
+    return (df, total)
 
