@@ -7,7 +7,7 @@ SELECT [Lab_Code]
       ,[Current_State]
       ,CAST([Current_Date] AS VARCHAR)
       ,[Internet_Connectivity]
-  FROM [DisaLabsLogs].[dbo].[State]
+  FROM [LabLogs].[dbo].[State]
   WHERE CAST([Current_Date] AS DATE) = CAST(GETDATE()-1 AS DATE)
 ORDER BY [Current_Date] DESC;
 '''
@@ -21,7 +21,7 @@ SELECT [Lab_Code]
       ,[Current_State]
       ,[Current_Date]
       ,[Internet_Connectivity]
-  FROM [DisaLabsLogs].[dbo].[State]
+  FROM [LabLogs].[dbo].[State]
   WHERE CAST([Current_Date] AS DATE) BETWEEN {{}} AND {{}}
 ORDER BY [Current_Date] DESC;
 '''
@@ -35,7 +35,7 @@ SELECT [Lab_Code]
       ,[Current_State]
       ,[Current_Date]
       ,[Internet_Connectivity]
-  FROM [DisaLabsLogs].[dbo].[State]
+  FROM [LabLogs].[dbo].[State]
   WHERE [Process] = {{}}
 ORDER BY [Current_Date] DESC;
 '''
