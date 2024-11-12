@@ -82,7 +82,7 @@ def start(process_name, process_path, df):
     """
     # Start the process
     try:
-        psutil.Popen(process_path)
+        psutil.Popen(process_path, cwd=r"C:\Disalab")
     except Exception as e:
         df.loc[df['Process'] == process_name,
                'Previous_State'] = 'Process not found'
@@ -99,7 +99,7 @@ def start(process_name, process_path, df):
     # Get the window object
     window = gw.getActiveWindow()
     # Minimize the window
-    window.minimize()
+    # window.minimize()
     return update_process(process_name, df)
 
 
@@ -155,4 +155,6 @@ def insert_data(df):
         None
     """
     with database().connect() as connection:
+        # print(connection)
+        # df.head()
         df.to_sql('State', connection, if_exists='append', index=False)
