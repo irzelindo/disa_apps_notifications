@@ -5,7 +5,7 @@ cfg = ConfigParser()
 
 BASE_PATH = os.path.join(os.path.dirname(os.path.abspath('')), 'disa_apps_notifications')
 
-CONFIG_PATH = os.path.join(BASE_PATH, 'configs\config.ini')
+CONFIG_PATH = os.path.join(BASE_PATH, 'configs\\config.ini')
 
 # print(CONFIG_PATH)
 
@@ -46,5 +46,3 @@ DATABASE = cfg.get('sql_server', 'database')
 SERVER = cfg.get('sql_server', 'server')
 DATABASE_USERNAME = cfg.get('sql_server', 'username')
 DATABASE_PASSWORD = cfg.get('sql_server', 'password')
-
-

@@ -2,7 +2,7 @@ import pandas as pd
 
 from configs.addresses import *
 from configs.paths import *
-from configs.processes import processes
+from configs.process import processes
 from controllers.email import *
 from controllers.process import *
 
